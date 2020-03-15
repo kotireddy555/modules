@@ -1,4 +1,4 @@
-# Simple Notification Service (SNS)
+ # Simple Notification Service (SNS)
 
 Terraform module which creates SNS on AWS.
 
@@ -10,20 +10,27 @@ Terraform module which creates SNS on AWS.
 
 ```hcl
 
-module "ec2" {
-  source = "git::ssh://git@github.azc.ext.hp.com/MSSI-DevOps/TerraformModules.git//ec2?ref=master"
+module "sqs" {
+  source = "git::ssh://git@github.com:kotireddy555/modules.git//sns?ref=master"
 
-   name                   = "ARC"
-   ami                    = "ami-ebd02392"
-   instance_type          = "t2.micro"
-   key_name               = "user1"
-   vpc_security_group_ids = ["sg-12345678"]
-   subnet_id              = "subnet-eddcdzz4"
-   tag_cost_center        = "US12345678"
-   tag_mru                = "7BBK"
-   tag_location_code      = "47II19240000HO00"
-   tag_eprid              = "ARC12345"
+  name = "${var.name}"
+  sqs_all_identifiers = "${var.sqs_all_identifiers}"
 }
+
+module "second" {
+  source = "git::ssh://git@github.com:kotireddy555/modules.git//sns?ref=master"
+
+  name = "${var.name_second}"
+  sqs_all_identifiers = "${var.sqs_all_identifiers_second}"
+}
+
+module "first" {
+  source = "git::ssh://git@github.com:kotireddy555/modules.git//sns?ref=master"
+
+  name = "${lookup(var.sqs_queue_map[0], "name")}"
+  sqs_all_identifiers = "${split(",", lookup(var.sqs_queue_map[0], "sqs_all_identifiers"))}"
+}
+
 
 ```
 
