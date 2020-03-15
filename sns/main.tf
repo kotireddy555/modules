@@ -19,7 +19,7 @@ data "aws_iam_policy_document" "policy-doc" {
     principals {
       type = "AWS"
 
-      identifiers = ["${var.subscribe_identifiers}"]
+      identifiers = "${var.subscribe_identifiers}"
     }
   }
 
@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "policy-doc" {
     principals {
       type = "AWS"
 
-      identifiers = ["${var.publish_identifiers}"]
+      identifiers = "${var.publish_identifiers}"
     }
   }
 }
