@@ -28,11 +28,11 @@ variable "display_name" {
 variable "subscribe_identifiers" {
   type = list(string)
   description = "List of AWS user or role ARNs that have permissions to subscribe to the SNS topic."
-  default = []
+  default = ["592144301084"]
 }
 
 variable "publish_identifiers" {
   type = list(string)
   description = "List of AWS user or role ARNs that have permission to publish to the SNS topic"
-  default = []
+  default = ["592144301084"]
 }
