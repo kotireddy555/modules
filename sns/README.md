@@ -11,7 +11,7 @@ Terraform module which creates SNS on AWS.
 ```hcl
 
 module "sqs" {
-  source = "git::ssh://git@github.com:kotireddy555/modules.git//sns?ref=master"
+  source = "git::ssh://git@github.com/kotireddy555/modules.git//sns?ref=master"
 
   name = "${var.name}"
   sqs_all_identifiers = "${var.sqs_all_identifiers}"

@@ -3,9 +3,10 @@ provider "aws" {
 }
 
 module "create-one-sns-topic" {
-  source = "./sns"
+  //source = "./sns"
+  source = "git::ssh://git@github.com/kotireddy555/modules.git//sns?ref=master"
 
-  display_name = "var.display_name"
+  display_name = var.display_name
   name = var.name
   subscribe_identifiers = var.subscribe_identifiers
   publish_identifiers = var.publish_identifiers
@@ -25,13 +26,13 @@ variable "display_name" {
 }
 
 variable "subscribe_identifiers" {
-  type = "list"
+  type = list(string)
   description = "List of AWS user or role ARNs that have permissions to subscribe to the SNS topic."
   default = []
 }
 
 variable "publish_identifiers" {
-  type = "list"
+  type = list(string)
   description = "List of AWS user or role ARNs that have permission to publish to the SNS topic"
   default = []
 }
