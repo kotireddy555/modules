@@ -1,6 +1,6 @@
 resource "aws_sns_topic" "sns" {
-  name         = "${var.name}"
-  display_name = "${var.display_name}"
+  name         = var.name
+  display_name = var.display_name
 }
 
 data "aws_iam_policy_document" "policy-doc" {
@@ -44,6 +44,6 @@ data "aws_iam_policy_document" "policy-doc" {
 }
 
 resource "aws_sns_topic_policy" "topic-policy" {
-  arn    = "${aws_sns_topic.sns.arn}"
-  policy = "${data.aws_iam_policy_document.policy-doc.json}"
+  arn    = aws_sns_topic.sns.arn
+  policy = data.aws_iam_policy_document.policy-doc.json
 }
